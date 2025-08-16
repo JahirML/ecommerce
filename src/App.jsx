@@ -4,7 +4,6 @@ import ContentGallery from "./components/ContentGallery";
 import Gallery from "./components/Gallery";
 import Header from "./components/Header";
 import { Toaster } from "react-hot-toast";
-import Carousel from "./components/Carousel";
 
 function App() {
   const [cart, setCart] = useState({
@@ -22,14 +21,12 @@ function App() {
           <Gallery />
           <ContentGallery cart={cart} setCart={setCart} />
         </main>
-        {/* <Carousel /> */}
       </div>
       <Toaster
         gutter={10}
         toastOptions={{
           duration: 2000,
           style: {
-            // width: "300px",
             height: "70px",
             background: "#1d2026",
             color: "#fff",

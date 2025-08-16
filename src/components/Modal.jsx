@@ -53,15 +53,14 @@ function Modal({ setIsOpenModal, startIndex = 0 }) {
     <div className={styles.overlay} ref={ref} onClick={clickOutside}>
       <div className={styles.gallery}>
         {/* Botón cerrar */}
-        <button
-          className={styles.closeButton}
-          onClick={() => setIsOpenModal(false)}
-        >
-          x
-        </button>
-
         <picture className={styles.container__main}>
-          {/* Botón anterior */}
+          <button
+            className={styles.closeButton}
+            onClick={() => setIsOpenModal(false)}
+          >
+            x
+          </button>
+
           <button
             className={`${styles.btn__previous} ${styles.goToPage}`}
             onClick={(e) => {
