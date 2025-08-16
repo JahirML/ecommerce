@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./Modal.module.css";
-
 function Modal({ setIsOpenModal, startIndex = 0 }) {
   const ref = useRef();
   const [currentIndex, setCurrentIndex] = useState(startIndex);
