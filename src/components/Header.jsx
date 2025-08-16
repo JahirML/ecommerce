@@ -60,7 +60,7 @@ function Header({ cart, setCart }) {
         </div>
         {isOpenCart && (
           // <div className={styles.cartOverlay} onClick={toggleCart}></div>
-          <Cart cart={cart} setCart={setCart} />
+          <Cart cart={cart} setCart={setCart} setIsOpenCart={setIsOpenCart} />
         )}
       </header>
     </>

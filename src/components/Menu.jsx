@@ -24,7 +24,6 @@ function Menu({ open, toggleMenu }) {
           <li>Contact</li>
         </a>
       </ul>
-      {/* </Modal> */}
     </nav>
   );
 }

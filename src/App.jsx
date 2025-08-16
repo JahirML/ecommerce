@@ -26,7 +26,7 @@ function App() {
         a
         gutter={10}
         toastOptions={{
-          duration: 3000,
+          duration: 2000,
           style: {
             // width: "300px",
             height: "70px",

@@ -1,6 +1,6 @@
 import toast from "react-hot-toast";
 import styles from "./Cart.module.css";
-function Cart({ cart, setCart }) {
+function Cart({ cart, setCart, setIsOpenCart }) {
   function handleCheckout() {
     toast.success("Compra completada con éxito");
 
@@ -11,6 +11,7 @@ function Cart({ cart, setCart }) {
       title: "Fall limited edition sneakers",
       totalPrice: 0,
     });
+    setIsOpenCart(false);
   }
 
   const { price, quantity, src, title, totalPrice } = cart;
