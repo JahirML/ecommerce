@@ -2,61 +2,82 @@ import { useState } from "react";
 import styles from "./Gallery.module.css";
 import Modal from "./Modal";
 
+const images = [
+  "/images/image-product-1.jpg",
+  "/images/image-product-2.jpg",
+  "/images/image-product-3.jpg",
+  "/images/image-product-4.jpg",
+];
+
+const thumbnails = [
+  "/images/image-product-1-thumbnail.jpg",
+  "/images/image-product-2-thumbnail.jpg",
+  "/images/image-product-3-thumbnail.jpg",
+  "/images/image-product-4-thumbnail.jpg",
+];
+
 function Gallery() {
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   function toggleModal() {
     setIsOpenModal(!isOpenModal);
+  }
+  function goNext() {
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  }
+  function goPrevious() {
+    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
   }
 
   return (
     <>
       <div className={styles.gallery}>
         <picture onClick={toggleModal} className={styles.container__main}>
-          <button className={`${styles.btn__previous} ${styles.goToPage}`}>
-            <img src="/images/icon-previous.svg" alt="" />
+          <button
+            className={`${styles.btn__previous} ${styles.goToPage}`}
+            onClick={(e) => {
+              e.stopPropagation();
+              goPrevious();
+            }}
+          >
+            <img src="/images/icon-previous.svg" alt="previous" />
           </button>
           <img
-            src="\images\image-product-1.jpg"
+            src={images[currentIndex]}
             className={styles.img__main}
-            alt=""
+            alt={`Product ${currentIndex + 1}`}
           />
-          <button className={`${styles.btn__next} ${styles.goToPage}`}>
-            <img src="/images/icon-next.svg" alt="" />
+          <button
+            className={`${styles.btn__next} ${styles.goToPage}`}
+            onClick={(e) => {
+              e.stopPropagation();
+              goNext();
+            }}
+          >
+            <img src="/images/icon-next.svg" alt="next" />
           </button>
         </picture>
 
         <div className={styles.container}>
-          <picture
-            className={`${styles.container__thumbnail} ${styles.selected}`}
-          >
-            <img
-              src="\images\image-product-1-thumbnail.jpg"
-              className={styles.img__thumbnail}
-              alt=""
-            />
-          </picture>
-          <picture className={styles.container__thumbnail}>
-            <img
-              src="\images\image-product-2-thumbnail.jpg"
-              className={styles.img__thumbnail}
-              alt=""
-            />
-          </picture>
-          <picture className={styles.container__thumbnail}>
-            <img
-              src="\images\image-product-3-thumbnail.jpg"
-              className={styles.img__thumbnail}
-              alt=""
-            />
-          </picture>
-          <picture className={styles.container__thumbnail}>
-            <img
-              src="\images\image-product-4-thumbnail.jpg"
-              className={styles.img__thumbnail}
-              alt=""
-            />
-          </picture>
+          {thumbnails.map((thumb, index) => (
+            <picture
+              key={index}
+              className={`${styles.container__thumbnail} ${
+                currentIndex === index ? styles.selected : ""
+              }`}
+              onClick={(e) => {
+                e.stopPropagation();
+                setCurrentIndex(index);
+              }}
+            >
+              <img
+                src={thumb}
+                className={styles.img__thumbnail}
+                alt={`Thumbnail ${index + 1}`}
+              />
+            </picture>
+          ))}
         </div>
       </div>
       {isOpenModal && <Modal setIsOpenModal={setIsOpenModal} />}
