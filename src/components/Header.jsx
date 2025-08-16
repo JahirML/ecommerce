@@ -4,14 +4,16 @@ import Menu from "./Menu";
 import Cart from "./Cart";
 
 function Header({ cart, setCart }) {
-  console.log(cart.quantity);
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenCart, setIsOpenCart] = useState(false);
 
   function toggleMenu() {
     setIsOpen(!isOpen);
   }
-  function toggleCart() {
+  function toggleCart(e) {
+    // console.log()
+    e.preventDefault();
+    console.log(e, e.target);
     setIsOpenCart(!isOpenCart);
   }
 
@@ -19,6 +21,7 @@ function Header({ cart, setCart }) {
     <>
       <header className={`${styles.header} `}>
         <div className={`${styles.div} ${isOpen ? styles.overlay : ""}`}>
+          {/* <div className={`${styles.div}`}> */}
           <button
             className={styles.burger}
             onClick={toggleMenu}
