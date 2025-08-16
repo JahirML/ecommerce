@@ -25,7 +25,6 @@ function App() {
         {/* <Carousel /> */}
       </div>
       <Toaster
-        a
         gutter={10}
         toastOptions={{
           duration: 2000,
