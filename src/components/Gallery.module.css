@@ -76,3 +76,18 @@
     display: none;
   }
 }
+
+@media (max-width: 600px) {
+  .gallery {
+    width: 100%;
+    padding: 0;
+  }
+  .container__main {
+    width: 100%;
+    margin-bottom: 1.5rem;
+    border-radius: 0px;
+  }
+  .img__main {
+    border-radius: 0;
+  }
+}

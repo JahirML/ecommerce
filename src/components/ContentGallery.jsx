@@ -1,6 +1,36 @@
+import { useState } from "react";
 import styles from "./ContentGallery.module.css";
+import toast from "react-hot-toast";
 
-function ContentGallery() {
+function ContentGallery({ cart, setCart }) {
+  const [quantity, setQuantity] = useState(0);
+  function increaseQuantity() {
+    setQuantity((q) => q + 1);
+  }
+  function decreaseQuantity() {
+    if (quantity <= 0) {
+      toast.error("La cantidad no puede ser menor a 0");
+      return;
+    }
+    setQuantity((q) => q - 1);
+  }
+
+  const handleAddToCart = () => {
+    if (quantity <= 0) {
+      toast.error("Porfavor agrega por lo menos un producto");
+      return;
+    }
+    setCart((prevCart) => {
+      const newQuantity = prevCart.quantity + quantity;
+      return {
+        ...prevCart,
+        quantity: newQuantity,
+        totalPrice: newQuantity * prevCart.price,
+      };
+    });
+    setQuantity(0);
+    toast.success("Producto agregado al carrito");
+  };
   return (
     <div className={styles.content}>
       <p className={styles.subtitle}>Sneaker company</p>
@@ -10,19 +40,25 @@ function ContentGallery() {
         Featuring a durable rubber outer sole, they’ll withstand everything the
         weather can offer.
       </p>
-      <p className={styles.price}>
-        $125.00 <span className={styles.discount}>50%</span>
-      </p>
-      <p className={styles.oldPrice}>$250.00</p>
+      <div className={styles.priceContainer}>
+        <p className={styles.price}>
+          $125.00 <span className={styles.discount}>50%</span>
+        </p>
+        <p className={styles.oldPrice}>$250.00</p>
+      </div>
 
       <div className={styles.buttonContainer}>
         <div className={styles.quantityContainer}>
-          <button className={styles.buttonQuantity}>-</button>
-          <span className={styles.quantity}>0</span>
-          <button className={styles.buttonQuantity}>+</button>
+          <button className={styles.buttonQuantity} onClick={decreaseQuantity}>
+            -
+          </button>
+          <span className={styles.quantity}>{quantity}</span>
+          <button className={styles.buttonQuantity} onClick={increaseQuantity}>
+            +
+          </button>
         </div>
 
-        <button className={styles.buttonCart}>
+        <button className={styles.buttonCart} onClick={handleAddToCart}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
