@@ -38,6 +38,9 @@ function Gallery() {
         goPrevious();
       }
     }
+    if (currentIndex !== 0) {
+      document.querySelector(".img__main ").style.objectPosition = "top";
+    }
 
     document.addEventListener("keydown", handleKeyDown);
 
@@ -61,7 +64,9 @@ function Gallery() {
           </button>
           <img
             src={images[currentIndex]}
-            className={styles.img__main}
+            className={`${styles.img__main} ${
+              currentIndex === 0 ? styles.img__main_1 : ""
+            }`}
             alt={`Product ${currentIndex + 1}`}
           />
           <button

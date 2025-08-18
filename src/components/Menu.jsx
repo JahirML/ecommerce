@@ -6,7 +6,7 @@ function Menu({ open, toggleMenu }) {
       <button className={styles.close} onClick={toggleMenu}>
         x
       </button>
-      {/* <Modal> */}
+
       <ul className={styles.ul}>
         <a href="">
           <li>Collections</li>
