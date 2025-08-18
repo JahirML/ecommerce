@@ -23,6 +23,8 @@
 
 html {
   font-size: 62.5%;
+  font-family: "kumbh sans", sans-serif;
+  color: var(--color-grey-950);
 }
 @media (max-width: 900px) {
   html {

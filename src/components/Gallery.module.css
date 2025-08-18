@@ -20,6 +20,7 @@
   width: 100%;
   object-fit: cover;
   border-radius: 10px;
+  cursor: pointer;
 }
 .container {
   width: 90%;
@@ -43,6 +44,7 @@
   transition: all 0.2s ease-in;
   border-radius: 1rem;
   border: 2px solid transparent;
+  cursor: pointer;
 }
 .container__thumbnail:hover .img__thumbnail {
   opacity: 0.5;

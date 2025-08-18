@@ -2,8 +2,9 @@ import { useState } from "react";
 import styles from "./ContentGallery.module.css";
 import toast from "react-hot-toast";
 
-function ContentGallery({ cart, setCart }) {
+function ContentGallery({ setCart }) {
   const [quantity, setQuantity] = useState(0);
+
   function increaseQuantity() {
     setQuantity((q) => q + 1);
   }

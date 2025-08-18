@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Gallery.module.css";
 import Modal from "./Modal";
 
@@ -29,6 +29,22 @@ function Gallery() {
   function goPrevious() {
     setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
   }
+
+  useEffect(() => {
+    function handleKeyDown(e) {
+      if (e.key === "ArrowRight") {
+        goNext();
+      } else if (e.key === "ArrowLeft") {
+        goPrevious();
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   return (
     <>
@@ -80,7 +96,13 @@ function Gallery() {
           ))}
         </div>
       </div>
-      {isOpenModal && <Modal setIsOpenModal={setIsOpenModal} />}
+      {isOpenModal && (
+        <Modal
+          setIsOpenModal={setIsOpenModal}
+          currentIndex={currentIndex}
+          setCurrentIndex={setCurrentIndex}
+        />
+      )}
     </>
   );
 }

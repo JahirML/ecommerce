@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import styles from "./Modal.module.css";
-function Modal({ setIsOpenModal, startIndex = 0 }) {
+
+function Modal({ setIsOpenModal, currentIndex = 0, setCurrentIndex }) {
   const ref = useRef();
-  const [currentIndex, setCurrentIndex] = useState(startIndex);
 
   const images = [
     "/images/image-product-1.jpg",

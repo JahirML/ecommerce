@@ -79,6 +79,11 @@
   font-size: 1.4rem;
   font-weight: bolder;
 }
+.deleteButton {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
 
 @media (max-width: 600px) {
   .cart {
